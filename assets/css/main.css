@@ -39,9 +39,13 @@ header {
   top: 0;
   left: 0;
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   padding: 30px 150px;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 header .main_logo {
@@ -73,6 +77,7 @@ header .gnb_area {
 
 /* 메인비주얼 영역 */
 .main_visual_container {
+  position: relative;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -108,7 +113,7 @@ header .gnb_area {
   border-radius: 100px;
   border: 1px solid #fff;
   font-family: Danjo-bold-Regular;
-  font-size: 24px;
+  font-size: 1.25rem;
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease-in;
@@ -348,6 +353,11 @@ header .gnb_area {
   height: 100vh;
   padding: 100px 150px;
   background: #f1f1f1;
+  opacity: 0;
+  transition: all 0.7s ease-in;
+}
+.bestsellers_container.on {
+  opacity: 1;
 }
 
 .bestsellers_container .bestsellers_title {
@@ -356,6 +366,12 @@ header .gnb_area {
   font-weight: 900;
   font-style: italic;
   font-size: 5rem;
+  transform: rotateX(90deg);
+  transition: all 0.5s cubic-bezier(0.79, 0.42, 0.49, 1.47);
+}
+
+.bestsellers_container.on .bestsellers_title {
+  transform: rotateX(0);
 }
 
 .bestsellers_container .bestsellers_title:after {
@@ -409,10 +425,13 @@ header .gnb_area {
   align-items: center;
   justify-content: center;
   display: none;
+  opacity: 0;
+  transition: all 0.7s ease-in;
 }
 
 .bestsellers_container .item_info_area .besteller_info.on {
   display: flex;
+  opacity: 1;
 }
 
 .bestsellers_container .item_info_area {
@@ -423,9 +442,10 @@ header .gnb_area {
 }
 
 .item_info_area .besteller_info .item_text {
-  margin-top: -10px;
+  margin-top: -0.625rem;
   text-align: center;
-  font-size: 18px;
+  font-size: 1rem;
+  line-height: 1.2;
 }
 
 .item_info_area .besteller_info .buy_link {
@@ -450,6 +470,22 @@ header .gnb_area {
   width: 400px;
   height: 400px;
   background: url("../img/best_1.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.item_info_area .besteller_info:nth-child(2) .item_img {
+  width: 400px;
+  height: 400px;
+  background: url("../img/best_2.webp") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.item_info_area .besteller_info:last-child .item_img {
+  width: 400px;
+  height: 400px;
+  background: url("../img/best_3.webp") no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -485,7 +521,22 @@ header .gnb_area {
   font-style: italic;
 }
 
-.product_container .product_text_area {
+.product_container .product_title p {
+  position: relative;
+  transform: rotateX(90deg);
+  transition: all 1.2s cubic-bezier(0.79, 0.42, 0.49, 1.47);
+}
+
+.product_container.on .product_title p {
+  transform: rotateX(0);
+}
+
+.product_container .product_title p:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.product_container .product_title p:nth-child(3) {
+  transition-delay: 0.4s;
 }
 
 #product_text_area .product_text {
@@ -514,6 +565,13 @@ header .gnb_area {
   width: calc(50% - 50px);
   height: 440px;
   border: 1px solid #fff;
+  transition: all 0.3s ease-in;
+  background: transparent;
+  cursor: pointer;
+}
+
+.market_link_area .market_link:hover {
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .market_link_area .market_link .link_name {
@@ -521,6 +579,14 @@ header .gnb_area {
   font-family: "Danjo-bold-Regular";
   font-size: 55px;
   text-align: center;
+  transition: all 0.3s ease-in;
+}
+
+.market_link_area .market_link:hover .link_name {
+  color: #db3947;
+}
+.market_link_area .market_link:last-child:hover .link_name {
+  color: #fd5d47;
 }
 
 .market_link_area .market_link .link_btn {
@@ -531,6 +597,17 @@ header .gnb_area {
   border-radius: 50px;
   border: 1px solid #fff;
   cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.market_link_area .market_link:hover .link_btn {
+  border: 1px solid #db3947;
+  color: #db3947;
+}
+
+.market_link_area .market_link:last-child:hover .link_btn {
+  border: 1px solid #fd5d47;
+  color: #fd5d47;
 }
 
 /* xtend cahmpion 영역 */
@@ -545,17 +622,29 @@ header .gnb_area {
   background-position: center;
 }
 
-.champion_container .tag_img_area h2 {
+.champion_container h2 {
   font-family: "kallisto";
   font-weight: 900;
   font-style: italic;
   color: #fff;
   font-size: 140px;
+  filter: blur(100px);
+  transition: filter 1s ease-in-out;
+}
+
+.champion_container.on h2 {
+  filter: blur(0px);
 }
 
 .champion_container .user_img_area {
   padding: 100px 150px;
   height: 100vh;
+  opacity: 0;
+  transition: all 0.7s ease-in;
+}
+
+.champion_container .user_img_area.on {
+  opacity: 1;
 }
 
 .champion_container .user_img_area .user_text {
@@ -575,31 +664,71 @@ header .gnb_area {
 }
 
 .champion_container .user_imgs .user_img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: calc(25% - 20px);
   height: 550px;
   margin: 0 20px;
   border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .champion_container .user_imgs .user_img:nth-child(1) {
-  background: url("../img/xtendchampoin_1.png") no-repeat;
+  background-image: url("../img/xtendchampoin_1.png");
   background-size: cover;
   background-position: center top;
+  background-repeat: no-repeat;
 }
 .champion_container .user_imgs .user_img:nth-child(2) {
-  background: url("../img/xtendchampoin_2.png") no-repeat;
+  background-image: url("../img/xtendchampoin_2.png");
   background-size: cover;
   background-position: center top;
+  background-repeat: no-repeat;
 }
 .champion_container .user_imgs .user_img:nth-child(3) {
-  background: url("../img/xtendchampoin_3.png") no-repeat;
+  background-image: url("../img/xtendchampoin_3.png");
   background-size: cover;
   background-position: center top;
+  background-repeat: no-repeat;
 }
 .champion_container .user_imgs .user_img:nth-child(4) {
-  background: url("../img/xtendchampoin_4.png") no-repeat;
+  background-image: url("../img/xtendchampoin_4.png");
   background-size: cover;
   background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.champion_container .user_imgs .user_img .bg {
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.4s cubic-bezier(0.62, 0.14, 0.73, 0.43);
+  opacity: 0;
+}
+.champion_container .user_imgs .user_img:hover .bg {
+  opacity: 1;
+}
+
+.champion_container .user_imgs .user_img a {
+  height: 100%;
+  font-size: 1.5rem;
+  color: #2b2b2b;
+  font-weight: 300;
+  transform: translateY(70%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.62, 0.14, 0.73, 0.43);
+  z-index: 1;
+}
+
+.champion_container .user_img_area.on .user_img:hover a {
+  transform: translateY(50%);
+  opacity: 1;
 }
 
 .join_area {
@@ -607,6 +736,12 @@ header .gnb_area {
   justify-content: space-between;
   padding: 70px 150px;
   background: #2b2b2b;
+  opacity: 0;
+  transition: all 0.7s ease-in;
+}
+
+.join_area.on {
+  opacity: 1;
 }
 
 .join_area .join_title {
