@@ -1,3 +1,6 @@
+const gnb = document.getElementById("gnb");
+let gnbScroll = window.scrollY;
+
 const saleSection = document.querySelector(".sale_container");
 
 const bestSellerSection = document.querySelector(".bestsellers_container");
@@ -17,6 +20,14 @@ const joinSection = document.querySelector(".join_area");
 const division = productTextArea.offsetHeight / productText.length;
 
 window.addEventListener("scroll", () => {
+  // GNB숨김 노출 토글
+  if (gnbScroll < window.scrollY) {
+    gnb.style.transform = `translateY(-100px)`;
+  } else {
+    gnb.style.transform = `translateY(0px)`;
+  }
+  gnbScroll = window.scrollY;
+
   // 세일 안내 영역 on 클래스 토글
   if (
     window.scrollY + window.innerHeight > saleSection.offsetTop + window.innerHeight / 2 &&
