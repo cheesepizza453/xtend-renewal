@@ -1,4 +1,5 @@
 # xtend홈페이지 메인 리뉴얼
+링크 : http://miri-portfolio.s3-website.ap-northeast-2.amazonaws.com/projects/xtend/index.html <br/><br/>
 2023.07.23 디자인 진행 <br/>
 2023.07.24 퍼블리싱 및 모션 구현 진행 <br/>
 2023.07.25 GNB스크롤에 따라 노출/비노출, 푸터 하단 카피라이트 영역 추가, container div를 section으로 변경 <br/><br/>
